@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.databinding.adapters.Converters"/>
+        <variable
+            name="product"
+            type="com.zappos.ilovezappos.model.Product"/>
+    </data>
+
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/content_zappos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.zappos.ilovezappos.SearchResultActivity"
+        tools:showIn="@layout/activity_search_result">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/results"
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:clipToPadding="false">
+
+            <FrameLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_physical_attrs"
+                android:layout_weight="8">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_horizontal"
+                    app:imageUrl="@{product.thumbnailImageUrl}"
+                    android:paddingBottom="20dp"
+                    app:error="@{@drawable/zappos_logo}"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="ExtraText"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:gravity="center_horizontal"
+                    android:background="@color/translucent"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp">
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/color_id"
+                        android:background="@{Converters.convertColorToDrawable(product.colorId)}"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/style_id"
+                        android:textColor="#ffffff"
+                        android:paddingLeft="8dp"
+                        android:text="@{@string/style_id + product.styleId}"/>
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:id="@+id/product_meta_data">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_name"
+                    android:textSize="28sp"
+                    android:text="@{product.productName}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/brand_name"
+                    android:textSize="18sp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:text="@{product.brandName}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/price"
+                    android:textSize="24sp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="16dp"
+                    android:text="@{product.price}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/original_price"
+                    android:textSize="18sp"
+                    android:textAllCaps="true"
+                    android:layout_marginTop="8dp"
+                    android:text="@{product.originalPrice}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/percent_off"
+                    android:textSize="18sp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="8dp"
+                    android:text="@{product.percentOff}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/product_url"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:clickable="true"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/open_in_browser"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
